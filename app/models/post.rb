@@ -8,5 +8,5 @@ class Post < ApplicationRecord
   belongs_to :post_category
 
   has_many :likes, dependent: :destroy
-  has_many :comments, depedent: :destroy
+  has_many :comments, dependent: :destroy
 end
