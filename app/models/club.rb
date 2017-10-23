@@ -1,5 +1,5 @@
 class Club < ApplicationRecord
-  act_as_paranoid
+  acts_as_paranoid
 
   ATTRIBUTES_PARAMS = %i[
     name avatar description average_level number_of_members is_recruiting
