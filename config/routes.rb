@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
-  namespace :api,
-            defaults: { format: JSON },
-            constraints: { subdomain: :api },
-            path: '/' do
-    scope module: :v1,
-          constraints: ApiConstraints.new(version: 1, default: true) do
-
-    end
+  namespace :api, defaults: { format: "json" } do
+    resources :users, except: %i[new edit]
+    resources :sessions, only: %i[create destroy]
   end
 end

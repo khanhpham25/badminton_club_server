@@ -14,7 +14,7 @@ gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.2"
 gem "paranoia", "~> 2.2"
 gem 'active_model_serializers'
-gem "devise"
+gem 'devise'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
