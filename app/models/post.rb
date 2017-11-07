@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  act_as_paranoid
+  acts_as_paranoid
 
   ATTRIBUTES_PARAMS = %i[title content club_id post_category_id].freeze
 
