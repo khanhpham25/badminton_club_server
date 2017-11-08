@@ -4,11 +4,11 @@ class Api::UsersController < ApplicationController
 
   def index
     users = User.all
-    render json: users, status: :ok
+    render json: {users: users}, status: :ok
   end
 
   def show
-    render json: user, status: :ok
+    render json: {user: user}, status: :ok
   end
 
   def create
