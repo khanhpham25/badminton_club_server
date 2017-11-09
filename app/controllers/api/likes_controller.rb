@@ -5,39 +5,45 @@ module Api
 
     def index
       likes = Like.all
-      render json: {data: {likes: likes}}, status: :ok
+      render json: {
+        messages: "Load likes succesfully", status: 200, data: likes
+      }, status: :ok
     end
 
     def show
-      render json: {data: {like: like}}, status: :ok
+      render json: {
+        messages: "Load likes succesfully", status: 200, data: like
+      }, status: :ok
     end
 
     def create
       like = Like.new like_params
       if like.save
         render json: {
-          message: "Like created succesfully!", data: {like: like}
+          message: "Like created succesfully!", data: like, status: 201
         }, status: :created
       else
-        render json: { errors: like.errors }, status: :unprocessable_entity
+        render json: {
+          errors: like.errors, status: 422
+        }, status: :unprocessable_entity
       end
     end
 
     def update
       if like.update_attributes like_params
         render json: {
-          message: "Like updated succesfully!", data: {like: like}
+          message: "Like updated succesfully!", data: like, status: 200
         }, status: :ok
       else
-        render json: { errors: like.errors }, status: :unprocessable_entity
+        render json: {
+          errors: like.errors, status: 422
+        }, status: :unprocessable_entity
       end
     end
 
     def destroy
       like.destroy
-      render json: {
-        message: "Like has been deleted!"
-      }, status: :no_content
+      render json: {message: "Like has been deleted!"}, status: :no_content
     end
 
     private

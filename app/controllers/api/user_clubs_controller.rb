@@ -5,11 +5,17 @@ module Api
 
     def index
       user_clubs = UserClub.all
-      render json: {data: {user_clubs: user_clubs}}, status: :ok
+      render json: {
+        messages: "Load User Clubs succesfully!",
+        data: user_clubs, status: 200
+      }, status: :ok
     end
 
     def show
-      render json: {data: {user_club: user_club}}, status: :ok
+      render json: {
+        messages: "Load User Club succesfully!",
+        data: user_club, status: 200
+      }, status: :ok
     end
 
     def create
@@ -17,10 +23,12 @@ module Api
       if user_club.save
         render json: {
           message: "User Club created succesfully!",
-          data: {user_club: user_club}
+          data: user_club, status: 201
         }, status: :created
       else
-        render json: { errors: user_club.errors }, status: :unprocessable_entity
+        render json: {
+          errors: user_club.errors, status: 422
+        }, status: :unprocessable_entity
       end
     end
 
@@ -28,10 +36,12 @@ module Api
       if user_club.update_attributes club_params
         render json: {
           message: "User Club updated succesfully!",
-          data: {user_club: user_club}
+          data: user_club, status: 200
         }, status: :ok
       else
-        render json: { errors: user_club.errors }, status: :unprocessable_entity
+        render json: {
+          errors: user_club.errors, status: 422
+        }, status: :unprocessable_entity
       end
     end
 

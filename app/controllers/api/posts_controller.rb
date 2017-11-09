@@ -5,31 +5,39 @@ module Api
 
     def index
       posts = Post.all
-      render json: {data: {posts: posts}}, status: :ok
+      render json: {
+        messages: "Load Posts succesfully", data: posts, status: 200
+      }, status: :ok
     end
 
     def show
-      render json: {data: {post: post}}, status: :ok
+      render json: {
+        messages: "Load Post succesfully", data: post, status: 200
+      }, status: :ok
     end
 
     def create
       post = Post.new post_params
       if post.save
         render json: {
-          message: "Post created succesfully!", data: {post: post}
+          message: "Post created succesfully!", data: post, status: 201
         }, status: :created
       else
-        render json: { errors: post.errors }, status: :unprocessable_entity
+        render json: {
+          errors: post.errors, status: 422
+        }, status: :unprocessable_entity
       end
     end
 
     def update
       if post.update_attributes post_params
         render json: {
-          message: "Post updated succesfully!", data: {post: post}
+          message: "Post updated succesfully!", data: post, status: 200
         }, status: :ok
       else
-        render json: { errors: post.errors }, status: :unprocessable_entity
+        render json: {
+          errors: post.errors, status: 422
+        }, status: :unprocessable_entity
       end
     end
 

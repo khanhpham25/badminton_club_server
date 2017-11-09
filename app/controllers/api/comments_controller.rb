@@ -5,39 +5,46 @@ module Api
 
     def index
       comments = Comment.all
-      render json: {data: {comments: comments}}, status: :ok
+      render json: {
+        messages: "Load comments succesfully", data: comments, status: 200
+      }, status: :ok
     end
 
     def show
-      render json: {data: {comment: comment}}, status: :ok
+      render json: {
+        messages: "Load comment succesfully", data: comment, status: 200
+      }, status: :ok
     end
 
     def create
       comment = Comment.new comment_params
       if comment.save
         render json: {
-          message: "Comment created succesfully!", data: {comment: comment}
-        }, status: :created, location: [:api, comment]
+          message: "Comment created succesfully!",
+          data: comment, status: 201
+        }, status: :created
       else
-        render json: { errors: comment.errors }, status: :unprocessable_entity
+        render json: {
+          errors: comment.errors, status: 422
+        }, status: :unprocessable_entity
       end
     end
 
     def update
       if comment.update_attributes comment_params
         render json: {
-          message: "Comment updated succesfully!", data: {comment: comment}
-        }, status: :ok, location: [:api, comment]
+          message: "Comment updated succesfully!", data: comment, status: 200
+        }, status: :ok
       else
-        render json: { errors: comment.errors }, status: :unprocessable_entity
+        render json: {
+          errors: comment.errors, status: 422
+        }, status: :unprocessable_entity
       end
     end
 
     def destroy
       comment.destroy
-      render json: {
-        message: "Comment has been deleted!"
-      }, status: :no_content
+      render json: {message: "Comment has been deleted!"}, status: :no_content
     end
 
     private
@@ -52,9 +59,7 @@ module Api
       @comment = Comment.find_by id: params[:id]
 
       return if comment
-      render json: {
-        messages: "Comment not found!"
-      }, status: :not_found
+      render json: {messages: "Comment not found!"}, status: :not_found
     end
   end
 end

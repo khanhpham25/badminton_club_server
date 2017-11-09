@@ -5,11 +5,15 @@ module Api
 
     def index
       categories = PostCategory.all
-      render json: {data: {categories: categories}}, status: :ok
+      render json: {
+        messages: "Load categories succesfully!", data: categories, status: 200
+      }, status: :ok
     end
 
     def show
-      render json: {data: {category: category}}, status: :ok
+      render json: {
+        messages: "Load category succesfully!", data: category, status: 200
+      }, status: :ok
     end
 
     def create
@@ -17,10 +21,12 @@ module Api
       if category.save
         render json: {
           message: "Post Category created succesfully!",
-          data: {category: category}
+          data: category, status: 201
         }, status: :created
       else
-        render json: { errors: category.errors }, status: :unprocessable_entity
+        render json: {
+          errors: category.errors, status: 422
+        }, status: :unprocessable_entity
       end
     end
 
@@ -28,18 +34,19 @@ module Api
       if category.update_attributes category_params
         render json: {
           message: "Post Category updated succesfully!",
-          data: {category: category}
+          data: category, status: 200
         }, status: :ok
       else
-        render json: { errors: category.errors }, status: :unprocessable_entity
+        render json: {
+          errors: category.errors, status: 422
+        }, status: :unprocessable_entity
       end
     end
 
     def destroy
       category.destroy
-      render json: {
-        message: "Post Category has been deleted!"
-      }, status: :no_content
+      render json: {message: "Post Category has been deleted!"},
+        status: :no_content
     end
 
     private
