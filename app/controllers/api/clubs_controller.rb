@@ -5,19 +5,19 @@ module Api
 
     def index
       clubs = Club.all
-      render json: clubs, status: :ok
+      render json: {data: {clubs: clubs}}, status: :ok
     end
 
     def show
-      render json: club, status: :ok
+      render json: {data: {club: club}}, status: :ok
     end
 
     def create
       club = Club.new club_params
       if club.save
         render json: {
-          message: "Club created succesfully!", club: club
-        }, status: :created, location: [:api, club]
+          message: "Club created succesfully!", data: {club: club}
+        }, status: :created
       else
         render json: { errors: club.errors }, status: :unprocessable_entity
       end
@@ -26,8 +26,8 @@ module Api
     def update
       if club.update_attributes club_params
         render json: {
-          message: "Club updated succesfully!", club: club
-        }, status: :ok, location: [:api, club]
+          message: "Club updated succesfully!", data: {club: club}
+        }, status: :ok
       else
         render json: { errors: club.errors }, status: :unprocessable_entity
       end

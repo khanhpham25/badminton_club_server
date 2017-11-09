@@ -5,18 +5,18 @@ module Api
 
     def index
       comments = Comment.all
-      render json: comments, status: :ok
+      render json: {data: {comments: comments}}, status: :ok
     end
 
     def show
-      render json: comment, status: :ok
+      render json: {data: {comment: comment}}, status: :ok
     end
 
     def create
       comment = Comment.new comment_params
       if comment.save
         render json: {
-          message: "Comment created succesfully!", comment: comment
+          message: "Comment created succesfully!", data: {comment: comment}
         }, status: :created, location: [:api, comment]
       else
         render json: { errors: comment.errors }, status: :unprocessable_entity
@@ -26,7 +26,7 @@ module Api
     def update
       if comment.update_attributes comment_params
         render json: {
-          message: "Comment updated succesfully!", comment: comment
+          message: "Comment updated succesfully!", data: {comment: comment}
         }, status: :ok, location: [:api, comment]
       else
         render json: { errors: comment.errors }, status: :unprocessable_entity

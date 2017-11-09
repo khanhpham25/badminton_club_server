@@ -5,11 +5,11 @@ module Api
 
     def index
       working_schedules = WorkingSchedule.all
-      render json: working_schedules, status: :ok
+      render json: {data: {working_schedules: working_schedules}}, status: :ok
     end
 
     def show
-      render json: working_schedule, status: :ok
+      render json: {data: {working_schedule: working_schedule}}, status: :ok
     end
 
     def create
@@ -17,8 +17,8 @@ module Api
       if working_schedule.save
         render json: {
           message: "Working Schedule created succesfully!",
-          working_schedule: working_schedule
-        }, status: :created, location: [:api, working_schedule]
+          data: {working_schedule: working_schedule}
+        }, status: :created
       else
         render json: { errors: working_schedule.errors },
           status: :unprocessable_entity
@@ -29,8 +29,8 @@ module Api
       if working_schedule.update_attributes working_schedule_params
         render json: {
           message: "Working Schedule updated succesfully!",
-          working_schedule: working_schedule
-        }, status: :ok, location: [:api, working_schedule]
+          data: {working_schedule: working_schedule}
+        }, status: :ok
       else
         render json: { errors: working_schedule.errors },
           status: :unprocessable_entity
