@@ -4,18 +4,19 @@ class Api::UsersController < ApplicationController
 
   def index
     users = User.all
-    render json: {users: users}, status: :ok
+    render json: {data: {users: users}}, status: :ok
   end
 
   def show
-    render json: {user: user}, status: :ok
+    render json: {data: {user: user}}, status: :ok
   end
 
   def create
     user = User.new user_params
     if user.save
-      render json: {message: "User created succesfully!", user: user},
-        status: :created, location: [:api, user]
+      render json: {
+        message: "User created succesfully!", data: {user: user}
+      }, status: :created
     else
       render json: { errors: user.errors }, status: :unprocessable_entity
     end
@@ -23,8 +24,9 @@ class Api::UsersController < ApplicationController
 
   def update
     if user.update_attributes user_params
-      render json: {message: "User updated succesfully!", user: user},
-        status: :ok, location: [:api, user]
+      render json: {
+        message: "User updated succesfully!", data: {user: user}
+      }, status: :ok
     else
       render json: { errors: user.errors }, status: :unprocessable_entity
     end
@@ -48,8 +50,6 @@ class Api::UsersController < ApplicationController
     @user = User.find_by id: params[:id]
 
     return if user
-    render json: {
-      messages: "User not found!"
-    }, status: :not_found
+    render json: {messages: "User not found!"}, status: :not_found
   end
 end

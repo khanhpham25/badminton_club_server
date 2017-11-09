@@ -5,19 +5,19 @@ module Api
 
     def index
       likes = Like.all
-      render json: likes, status: :ok
+      render json: {data: {likes: likes}}, status: :ok
     end
 
     def show
-      render json: like, status: :ok
+      render json: {data: {like: like}}, status: :ok
     end
 
     def create
       like = Like.new like_params
       if like.save
         render json: {
-          message: "Like created succesfully!", like: like
-        }, status: :created, location: [:api, like]
+          message: "Like created succesfully!", data: {like: like}
+        }, status: :created
       else
         render json: { errors: like.errors }, status: :unprocessable_entity
       end
@@ -26,8 +26,8 @@ module Api
     def update
       if like.update_attributes like_params
         render json: {
-          message: "Like updated succesfully!", like: like
-        }, status: :ok, location: [:api, like]
+          message: "Like updated succesfully!", data: {like: like}
+        }, status: :ok
       else
         render json: { errors: like.errors }, status: :unprocessable_entity
       end
@@ -52,9 +52,7 @@ module Api
       @like = Like.find_by id: params[:id]
 
       return if like
-      render json: {
-        messages: "Like not found!"
-      }, status: :not_found
+      render json: {messages: "Like not found!"}, status: :not_found
     end
   end
 end

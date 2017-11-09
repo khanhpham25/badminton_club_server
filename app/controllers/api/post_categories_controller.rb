@@ -5,19 +5,20 @@ module Api
 
     def index
       categories = PostCategory.all
-      render json: categories, status: :ok
+      render json: {data: {categories: categories}}, status: :ok
     end
 
     def show
-      render json: category, status: :ok
+      render json: {data: {category: category}}, status: :ok
     end
 
     def create
       category = PostCategory.new category_params
       if category.save
         render json: {
-          message: "Post Category created succesfully!", category: category
-        }, status: :created, location: [:api, category]
+          message: "Post Category created succesfully!",
+          data: {category: category}
+        }, status: :created
       else
         render json: { errors: category.errors }, status: :unprocessable_entity
       end
@@ -26,8 +27,9 @@ module Api
     def update
       if category.update_attributes category_params
         render json: {
-          message: "Post Category updated succesfully!", category: category
-        }, status: :ok, location: [:api, category]
+          message: "Post Category updated succesfully!",
+          data: {category: category}
+        }, status: :ok
       else
         render json: { errors: category.errors }, status: :unprocessable_entity
       end
@@ -52,9 +54,7 @@ module Api
       @category = PostCategory.find_by id: params[:id]
 
       return if category
-      render json: {
-        messages: "Post Category not found!"
-      }, status: :not_found
+      render json: {messages: "Post Category not found!"}, status: :not_found
     end
   end
 end
