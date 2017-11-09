@@ -5,39 +5,45 @@ module Api
 
     def index
       clubs = Club.all
-      render json: {data: {clubs: clubs}}, status: :ok
+      render json: {
+        messages: "Load clubs successfully!", data: clubs, status: 200
+      }, status: :ok
     end
 
     def show
-      render json: {data: {club: club}}, status: :ok
+      render json: {
+        messages: "Load club succesfully!", data: club, status: 200
+      }, status: :ok
     end
 
     def create
       club = Club.new club_params
       if club.save
         render json: {
-          message: "Club created succesfully!", data: {club: club}
+          message: "Club created succesfully!", data: club, status: 201
         }, status: :created
       else
-        render json: { errors: club.errors }, status: :unprocessable_entity
+        render json: {
+          errors: club.errors, status: 422
+        }, status: :unprocessable_entity
       end
     end
 
     def update
       if club.update_attributes club_params
         render json: {
-          message: "Club updated succesfully!", data: {club: club}
+          message: "Club updated succesfully!", data: club, status: 200
         }, status: :ok
       else
-        render json: { errors: club.errors }, status: :unprocessable_entity
+        render json: {
+          errors: club.errors, status: :unprocessable_entity
+        }, status: :unprocessable_entity
       end
     end
 
     def destroy
       club.destroy
-      render json: {
-        message: "Club has been deleted!"
-      }, status: :no_content
+      render json: {message: "Club has been deleted!"}, status: :no_content
     end
 
     private
@@ -52,9 +58,7 @@ module Api
       @club = Club.find_by id: params[:id]
 
       return if club
-      render json: {
-        messages: "Club not found!"
-      }, status: :not_found
+      render json: {messages: "Club not found!"}, status: :not_found
     end
   end
 end
