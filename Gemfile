@@ -15,6 +15,7 @@ gem "paranoia", "~> 2.2"
 gem 'active_model_serializers'
 gem 'turbolinks', '~> 5'
 gem 'devise'
+gem 'carrierwave'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
