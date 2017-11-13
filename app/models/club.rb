@@ -3,7 +3,7 @@ class Club < ApplicationRecord
 
   ATTRIBUTES_PARAMS = %i[
     name avatar description average_level number_of_members is_recruiting
-    allow_friendly_match
+    allow_friendly_match location
   ].freeze
 
   has_many :owner_user_clubs, -> { owner_user_clubs }, class_name: UserClub.name
