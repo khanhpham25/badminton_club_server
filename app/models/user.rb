@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   ATTRIBUTES_PARAMS = %i[
     name email mobile badminton_level avatar main_rackquet is_admin
-    password password_confirmation
+    gender password password_confirmation
   ].freeze
 
   has_many :owner_user_clubs, -> { owner_user_clubs }, class_name: UserClub.name
