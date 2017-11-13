@@ -57,6 +57,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (1.1.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     case_transform (0.2)
       activesupport
     childprocess (0.8.0)
@@ -237,6 +241,7 @@ DEPENDENCIES
   active_model_serializers
   byebug
   capybara (~> 2.13)
+  carrierwave
   coffee-rails (~> 4.2)
   devise
   factory_girl_rails

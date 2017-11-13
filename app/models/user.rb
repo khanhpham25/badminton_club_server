@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  mount_uploader :avatar, PictureUploader
+
   before_create :generate_authentication_token!
 
   devise :database_authenticatable, :registerable,
