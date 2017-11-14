@@ -10,6 +10,8 @@ module Api
       user = User.where(email: user_email).first_or_create! do |user|
         user.email = user_email
         user.auth_token = user_auth_token
+        user.password = "123123"
+        user.password_confirmation = "123123"
         user.provider = user_provider
       end
 
