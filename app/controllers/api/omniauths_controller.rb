@@ -4,11 +4,13 @@ module Api
 
     def create
       user_email = params[:session][:email]
+      user_name = params[:session][:name]
       user_auth_token = params[:session][:auth_token]
       user_provider = params[:session][:provider]
 
       user = User.where(email: user_email).first_or_create! do |user|
         user.email = user_email
+        user.name = user_name
         user.auth_token = user_auth_token
         user.password = "123123"
         user.password_confirmation = "123123"
