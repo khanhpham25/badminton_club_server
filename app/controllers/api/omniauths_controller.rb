@@ -5,12 +5,12 @@ module Api
     def create
       user_email = params[:session][:email]
       user_auth_token = params[:session][:auth_token]
-      user_name = params[:session][:name]
+      user_provider = params[:session][:provider]
 
       user = User.where(email: user_email).first_or_create! do |user|
         user.email = user_email
         user.auth_token = user_auth_token
-        user.name = user_name
+        user.provider = user_provider
       end
 
       return unless user.persisted?

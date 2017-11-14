@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113040606) do
+ActiveRecord::Schema.define(version: 20171114062540) do
 
   create_table "clubs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -86,7 +86,6 @@ ActiveRecord::Schema.define(version: 20171113040606) do
     t.string "name"
     t.string "mobile"
     t.integer "badminton_level"
-    t.string "avatar"
     t.string "main_rackquet"
     t.boolean "is_admin"
     t.datetime "deleted_at"
@@ -94,6 +93,8 @@ ActiveRecord::Schema.define(version: 20171113040606) do
     t.datetime "updated_at", null: false
     t.string "auth_token", limit: 30, default: ""
     t.integer "gender"
+    t.string "avatar"
+    t.string "provider"
     t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
