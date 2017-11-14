@@ -1,5 +1,5 @@
 module Api
-  class OmniauthsController < Devise::SessionsController
+  class OmniauthsController < ApplicationController
     skip_before_action :verify_authenticity_token
 
     def create
@@ -14,13 +14,11 @@ module Api
       end
 
       return unless user.persisted?
-      sign_in user, store: false
       render json: {data: user, status: 200}, status: 200
     end
 
     def destroy
       user = User.find_by auth_token: params[:auth_token]
-      sign_out user
       user.generate_authentication_token!
       user.save
       head 204
