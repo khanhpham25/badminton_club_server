@@ -1,6 +1,6 @@
 class UserClub < ApplicationRecord
 
-  ATTRIBUTES_PARAMS = %i[user_id club_id is_owner].freeze
+  ATTRIBUTES_PARAMS = %i[id user_id club_id is_owner _destroy].freeze
 
   belongs_to :user
   belongs_to :club
