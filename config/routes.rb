@@ -6,5 +6,6 @@ Rails.application.routes.draw do
     delete 'auth/omniauths', to: 'omniauths#destroy'
 
     resources :users, except: %i[new edit]
+    resources :clubs, except: %i[new edit]
   end
 end
