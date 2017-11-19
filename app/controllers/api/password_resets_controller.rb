@@ -46,8 +46,9 @@ module Api
 
     def check_expiration
       if @user.password_reset_expired?
-        flash[:danger] = "Password reset has expired."
-        redirect_to new_password_reset_url
+        render json: {
+          errors: "Password reset has expired.", status: 422
+        }, status: :unprocessable_entity
       end
     end
   end
