@@ -1,5 +1,6 @@
 class Club < ApplicationRecord
   acts_as_paranoid
+  mount_uploader :avatar, PictureUploader
 
   ATTRIBUTES_PARAMS = [
     :name, :avatar, :description, :average_level, :number_of_members,
