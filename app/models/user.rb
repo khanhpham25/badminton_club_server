@@ -30,7 +30,8 @@ class User < ApplicationRecord
   end
 
   def create_reset_digest
-    update_attributes reset_digest: User.new_token,
+    self.reset_token = User.new_token
+    update_attributes reset_digest: reset_token,
                       reset_sent_at: Time.zone.now
   end
 
