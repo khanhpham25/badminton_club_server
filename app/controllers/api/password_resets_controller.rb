@@ -9,7 +9,8 @@ module Api
         user.create_reset_digest
         user.send_password_reset_email
         render json: {
-          message: "Email sent with password reset instructions", status: 200
+          message: "Email was sent with password reset instructions",
+          status: 200
         }, status: :ok
       else
         render json: {messages: "Email address not found"}, status: :not_found
@@ -17,16 +18,22 @@ module Api
     end
 
     def update
-      if params[:user][:password].empty?
-        user.errors.add :password, "can't be empty"
+      if user.reset_digest == params[:user][:reset_digest]
+        if params[:user][:password].empty?
+          user.errors.add :password, "can't be empty"
+          render json: {
+            errors: user.errors, status: 422
+          }, status: :unprocessable_entity
+        elsif user.update_attributes user_params
+          user.update_attributes reset_digest: nil
+          render json: {
+            message: "Password has been reseted", status: 200
+          }, status: :ok
+        end
+      else
         render json: {
-          errors: user.errors, status: 422
+          message: "Invalid Reset Token", status: 422
         }, status: :unprocessable_entity
-      elsif user.update_attributes user_params
-        user.update_attributes reset_digest: nil
-        render json: {
-          message: "Password has been reseted", status: 200
-        }, status: :ok
       end
     end
 

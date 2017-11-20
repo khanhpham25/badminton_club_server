@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
     resources :users, except: %i[new edit]
     resources :clubs, except: %i[new edit]
-    resources :password_resets, only: [:create, :update]
+    resources :password_resets, only: :create
+    patch 'password_resets', to: 'password_resets#update'
   end
 end
