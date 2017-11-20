@@ -58,7 +58,7 @@ module Api
       @club = Club.find_by id: params[:id]
 
       return if club
-      render json: {messages: "Club not found!"}, status: :not_found
+      render json: {errors: "Club not found!"}, status: :not_found
     end
   end
 end

@@ -13,7 +13,7 @@ module Api
           status: 200
         }, status: :ok
       else
-        render json: {messages: "Email address not found"}, status: :not_found
+        render json: {errors: "Email address not found"}, status: :not_found
       end
     end
 
@@ -27,12 +27,12 @@ module Api
         elsif user.update_attributes user_params
           user.update_attributes reset_digest: nil
           render json: {
-            message: "Password has been reseted", status: 200
+            messages: "Password has been reseted", status: 200
           }, status: :ok
         end
       else
         render json: {
-          message: "Invalid Reset Token", status: 422
+          errors: "Invalid Reset Token", status: 422
         }, status: :unprocessable_entity
       end
     end
@@ -48,7 +48,7 @@ module Api
     def find_user
       @user = User.find_by email: params[:email]
       return if user
-      render json: {messages: "User not found"}, status: :not_found
+      render json: {errors: "User not found"}, status: :not_found
     end
 
     def check_expiration
