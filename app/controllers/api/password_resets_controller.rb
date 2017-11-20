@@ -42,7 +42,8 @@ module Api
     attr_reader :user
 
     def user_params
-      params.require(:user).permit :password, :password_confirmation
+      params.require(:user).permit :reset_digest, :password,
+                                   :password_confirmation
     end
 
     def find_user
