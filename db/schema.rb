@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119032716) do
+ActiveRecord::Schema.define(version: 20171122155806) do
 
   create_table "clubs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20171119032716) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "location"
+    t.decimal "latitude", precision: 64, scale: 12
+    t.decimal "longitude", precision: 64, scale: 12
     t.index ["deleted_at"], name: "index_clubs_on_deleted_at"
   end
 
