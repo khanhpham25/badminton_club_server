@@ -4,7 +4,7 @@ class Club < ApplicationRecord
 
   ATTRIBUTES_PARAMS = [
     :name, :avatar, :description, :average_level, :number_of_members,
-    :is_recruiting, :allow_friendly_match, :location,
+    :is_recruiting, :allow_friendly_match, :location, :latitude, :longitude,
     user_clubs_attributes: UserClub::ATTRIBUTES_PARAMS
   ].freeze
 
