@@ -4,7 +4,7 @@ module Api
     before_action :find_club, only: %i[show update destroy]
 
     def index
-      clubs = Club.all
+      clubs = Club.sort_by params[:sort], current_user
       render json: {
         messages: "Load clubs successfully!", data: clubs, status: 200
       }, status: :ok

@@ -10,8 +10,9 @@ class Api::UsersController < ApplicationController
   end
 
   def show
+    user_seri = Serializers::Api::UserSerializer.new(object: user).serializer
     render json: {
-      messages: "Load User succesfully", data: user, status: 200
+      messages: "Load User succesfully", data: user_seri, status: 200
     }, status: :ok
   end
 
