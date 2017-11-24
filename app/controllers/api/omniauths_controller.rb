@@ -18,7 +18,8 @@ module Api
       end
 
       return unless user.persisted?
-      render json: {data: user, status: 200}, status: 200
+      user_seri = Serializers::Api::UserSerializer.new(object: user).serializer
+      render json: {data: user_seri, status: 200}, status: 200
     end
 
     def destroy

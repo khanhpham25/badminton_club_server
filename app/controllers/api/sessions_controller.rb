@@ -11,7 +11,9 @@ module Api
         sign_in user, store: false
         user.generate_authentication_token!
         user.save
-        render json: {data: user, status: 200}, status: 200
+        user_seri = Serializers::Api::UserSerializer
+          .new(object: user).serializer
+        render json: {data: user_seri, status: 200}, status: 200
       else
         render json: {
           errors: "Invalid email or password", status: 422

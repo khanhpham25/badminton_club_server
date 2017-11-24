@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   acts_as_paranoid
   mount_uploader :avatar, PictureUploader
+
   attr_accessor :reset_token
 
   before_save :downcase_email
@@ -16,11 +17,12 @@ class User < ApplicationRecord
   has_many :owner_user_clubs, -> { owner_user_clubs }, class_name: UserClub.name
   has_many :member_user_clubs, -> { member_user_clubs },
            class_name: UserClub.name
-  has_many :owned_clubs, through: :owner_user_clubs, class_name: Club.name
-  has_many :joined_clubs, through: :member_user_clubs, class_name: Club.name
+  has_many :owned_clubs, through: :owner_user_clubs, source: :club
+  has_many :joined_clubs, through: :member_user_clubs, source: :club
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :requests, dependent: :destroy
 
   validates :email, uniqueness: true
   validates :auth_token, uniqueness: true

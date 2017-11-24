@@ -13,9 +13,22 @@ class Club < ApplicationRecord
   has_many :member_user_clubs, -> { member_user_clubs },
            class_name: UserClub.name
   has_many :posts, dependent: :destroy
-  has_many :owners, through: :owner_user_clubs, class_name: User.name
-  has_many :members, through: :member_user_clubs, class_name: User.name
+  has_many :owners, through: :owner_user_clubs, source: :user
+  has_many :members, through: :member_user_clubs, source: :user
   has_many :working_schedules, dependent: :destroy
+  has_many :request, dependent: :destroy
+
+  sort = lambda do |sort_type, current_user|
+    if sort_type == "my_club"
+      joins(:user_clubs).where(user_clubs: {user_id: current_user.id})
+    elsif sort_type == "recruiting"
+      where is_recruiting: true
+    elsif sort_type == "friendly_match"
+      where allow_friendly_match: true
+    end
+  end
+
+  scope :sort_by, sort
 
   accepts_nested_attributes_for :user_clubs, allow_destroy: true,
     reject_if: proc{ |attributes| attributes[:user_id].blank? }
