@@ -15,7 +15,7 @@ module Serializers
       end
 
       def requested_club_ids
-        object.requests.pluck(:club_id)
+        object.requests.where(accepted: nil).pluck(:club_id)
       end
     end
   end
