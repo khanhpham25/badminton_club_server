@@ -1,10 +1,10 @@
 module Api
   class ClubsController < ApplicationController
-    before_action :authenticate_with_token!, only: %i[update destroy]
+    before_action :authenticate_with_token!, only: %i[index update destroy]
     before_action :find_club, only: %i[show update destroy]
 
     def index
-      clubs = Club.sort_by params[:sort], current_user
+      clubs = Club.sort_by params[:sort], @current_user
       render json: {
         messages: "Load clubs successfully!", data: clubs, status: 200
       }, status: :ok
