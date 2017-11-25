@@ -1,6 +1,6 @@
 module Api
   class RequestsController < ApplicationController
-    before_action :authenticate_with_token!, only: %i[index update destroy]
+    before_action :authenticate_with_token!, only: %i[update destroy]
     before_action :find_request, only: %i[show update destroy]
 
     def index
@@ -14,7 +14,8 @@ module Api
       request = Request.new request_params
       if request.save
         render json: {
-          message: "Club created succesfully!", data: request, status: 201
+          message: "Request sent. Please wait for club owner's response",
+          data: request, status: 201
         }, status: :created
       else
         render json: {
