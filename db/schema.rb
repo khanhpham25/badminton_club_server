@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124183649) do
+ActiveRecord::Schema.define(version: 20171126045703) do
 
   create_table "clubs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -39,6 +39,16 @@ ActiveRecord::Schema.define(version: 20171124183649) do
     t.index ["deleted_at"], name: "index_comments_on_deleted_at"
   end
 
+  create_table "join_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id"
+    t.integer "club_id"
+    t.boolean "accepted"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_join_requests_on_deleted_at"
+  end
+
   create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "post_id"
     t.integer "user_id"
@@ -64,16 +74,6 @@ ActiveRecord::Schema.define(version: 20171124183649) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["deleted_at"], name: "index_posts_on_deleted_at"
-  end
-
-  create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "user_id"
-    t.integer "club_id"
-    t.boolean "accepted"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["deleted_at"], name: "index_requests_on_deleted_at"
   end
 
   create_table "user_clubs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

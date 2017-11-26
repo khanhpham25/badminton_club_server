@@ -22,7 +22,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :requests, dependent: :destroy
+  has_many :join_requests, dependent: :destroy
 
   validates :email, uniqueness: true
   validates :auth_token, uniqueness: true
