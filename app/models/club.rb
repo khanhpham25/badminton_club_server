@@ -16,7 +16,7 @@ class Club < ApplicationRecord
   has_many :owners, through: :owner_user_clubs, source: :user
   has_many :members, through: :member_user_clubs, source: :user
   has_many :working_schedules, dependent: :destroy
-  has_many :request, dependent: :destroy
+  has_many :join_requests, dependent: :destroy
 
   sort = lambda do |sort_type, current_user|
     if sort_type == "my_club"
