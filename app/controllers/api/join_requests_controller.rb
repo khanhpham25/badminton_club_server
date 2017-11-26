@@ -28,7 +28,8 @@ module Api
     def update
       if join_request.update_attributes join_request_params
         render json: {
-          message: "JoinRequest updated succesfully!", data: join_request, status: 200
+          message: "JoinRequest updated succesfully!",
+          data: join_request, status: 200
         }, status: :ok
       else
         render json: {
