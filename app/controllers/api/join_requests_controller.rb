@@ -52,7 +52,8 @@ module Api
     end
 
     def find_join_request
-      @join_request = JoinRequest.find_by id: params[:id]
+      @join_request = JoinRequest.find_by user_id: params[:user_id],
+                                          club_id: params[:club_id]
 
       return if join_request
       render json: {errors: "JoinRequest not found!"}, status: :not_found
