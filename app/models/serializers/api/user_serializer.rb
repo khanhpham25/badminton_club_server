@@ -6,6 +6,12 @@ module Serializers
             :main_rackquet, :is_admin, :auth_token, :owned_club_ids,
             :member_club_ids, :requested_club_ids
 
+      def avatar
+        if object.avatar?
+          Hash[:url, object.avatar.url]
+        end
+      end
+
       def owned_club_ids
         object.owned_clubs.pluck(:id)
       end
