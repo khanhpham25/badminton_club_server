@@ -1,6 +1,6 @@
 module Serializers
   module Api
-    class UserSerializer < Serializers::BaseSerializer
+    class JoinRequestSerializer < Serializers::BaseSerializer
       attrs :user_id, :club_id, :accepted, :user
 
       def user
