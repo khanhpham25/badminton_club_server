@@ -3,7 +3,7 @@ module Serializers
     class UserSerializer < Serializers::BaseSerializer
       attrs :id, :name, :email, :mobile, :badminton_level, :avatar,
             :main_rackquet, :is_admin, :auth_token, :owned_club_ids,
-            :member_club_ids, :requested_club_ids
+            :member_club_ids, :requested_club_ids, :provider, :gender
 
       def avatar
         return unless object.avatar?
