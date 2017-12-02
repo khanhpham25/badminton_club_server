@@ -59,7 +59,8 @@ module Api
     end
 
     def find_user_club
-      @user_club = UserClub.find_by id: params[:id]
+      @user_club = UserClub.find_by user_id: params[:user_id],
+                                    club_id: params[:club_id]
 
       return if user_club
       render json: {messages: "User Club not found!"}, status: :not_found

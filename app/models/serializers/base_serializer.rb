@@ -1,5 +1,7 @@
 module Serializers
   class BaseSerializer
+    attr_reader :object
+
     def initialize args
       @object = args[:object]
       @class_name = args[:class_name].to_s
