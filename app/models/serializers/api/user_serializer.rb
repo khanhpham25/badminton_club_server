@@ -1,15 +1,13 @@
 module Serializers
   module Api
     class UserSerializer < Serializers::BaseSerializer
-      attr :object
       attrs :id, :name, :email, :mobile, :badminton_level, :avatar,
             :main_rackquet, :is_admin, :auth_token, :owned_club_ids,
             :member_club_ids, :requested_club_ids
 
       def avatar
-        if object.avatar?
-          Hash[:url, object.avatar.url]
-        end
+        return unless object.avatar?
+        Hash[:url, object.avatar.url]
       end
 
       def owned_club_ids
