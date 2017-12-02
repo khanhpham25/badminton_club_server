@@ -5,7 +5,7 @@ module Api
     before_action :find_club, only: :index
 
     def index
-      join_requests = Serializers::Api::UserSerializer
+      join_requests = Serializers::Api::JoinRequestSerializer
         .new(object: club.join_requests).serializer
       render json: {
         messages: "Load join_requests successfully!",
