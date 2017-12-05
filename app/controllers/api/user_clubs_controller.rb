@@ -21,6 +21,9 @@ module Api
     def create
       user_club = UserClub.new user_club_params
       if user_club.save
+        join_request = JoinRequest.find_by user_id: user_club_params[:user_id],
+                                           club_id: user_club_params[:club_id]
+        join_request.destroy if join_request                                                    
         render json: {
           message: "User Club created succesfully!",
           data: user_club, status: 201
