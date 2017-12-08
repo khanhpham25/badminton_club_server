@@ -1,5 +1,5 @@
 module Api
-  class PostCategoriesController < ApplicationController
+  class PostCategoriesController < Api::BaseController
     before_action :authenticate_with_token!, only: %i[update destroy]
     before_action :find_category, only: %i[show update destroy]
 

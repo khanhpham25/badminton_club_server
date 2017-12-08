@@ -1,5 +1,5 @@
 module Api
-  class LikesController < ApplicationController
+  class LikesController < Api::BaseController
     before_action :authenticate_with_token!, only: %i[update destroy]
     before_action :find_like, only: %i[show update destroy]
 

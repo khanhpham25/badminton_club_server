@@ -16,4 +16,9 @@ Rails.application.routes.draw do
     resources :password_resets, only: :create
     patch 'password_resets', to: 'password_resets#update'
   end
+
+  root "static_pages#home"
+
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
 end

@@ -1,5 +1,5 @@
 module Api
-  class JoinRequestsController < ApplicationController
+  class JoinRequestsController < Api::BaseController
     before_action :authenticate_with_token!, only: %i[update destroy]
     before_action :find_join_request, only: %i[show update destroy]
     before_action :find_club, only: :index

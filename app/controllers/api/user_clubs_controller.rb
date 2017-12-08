@@ -1,5 +1,5 @@
 module Api
-  class UserClubsController < ApplicationController
+  class UserClubsController < Api::BaseController
     before_action :authenticate_with_token!, only: %i[update destroy]
     before_action :find_user_club, only: %i[show update destroy]
 
@@ -23,7 +23,7 @@ module Api
       if user_club.save
         join_request = JoinRequest.find_by user_id: user_club_params[:user_id],
                                            club_id: user_club_params[:club_id]
-        join_request.destroy if join_request                                                    
+        join_request.destroy if join_request
         render json: {
           message: "User Club created succesfully!",
           data: user_club, status: 201
