@@ -1,5 +1,5 @@
 module Api
-  class PostsController < ApplicationController
+  class PostsController < Api::BaseController
     before_action :authenticate_with_token!, only: %i[update destroy]
     before_action :find_post, only: %i[show update destroy]
 

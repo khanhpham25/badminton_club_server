@@ -1,5 +1,5 @@
 module Api
-  class PasswordResetsController < ApplicationController
+  class PasswordResetsController < Api::BaseController
     before_action :find_user, only: %i(edit update)
     before_action :check_expiration, only: %i(edit update)
 

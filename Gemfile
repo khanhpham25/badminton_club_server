@@ -17,6 +17,10 @@ gem 'devise'
 gem 'carrierwave'
 gem "bcrypt", "3.1.11"
 gem "figaro"
+gem "jquery-rails"
+gem "bootstrap-sass", "3.3.6"
+gem "font-awesome-rails"
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

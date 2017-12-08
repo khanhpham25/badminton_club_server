@@ -1,5 +1,5 @@
 module Api
-  class WorkingSchedulesController < ApplicationController
+  class WorkingSchedulesController < Api::BaseController
     before_action :authenticate_with_token!, only: %i[update destroy]
     before_action :find_working_schedule, only: %i[show update destroy]
 

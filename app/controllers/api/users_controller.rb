@@ -1,4 +1,4 @@
-class Api::UsersController < ApplicationController
+class Api::UsersController < Api::BaseController
   before_action :authenticate_with_token!, only: %i[update destroy]
   before_action :find_user, only: %i[show update destroy]
 

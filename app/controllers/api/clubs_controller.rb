@@ -1,5 +1,5 @@
 module Api
-  class ClubsController < ApplicationController
+  class ClubsController < Api::BaseController
     before_action :authenticate_with_token!, only: %i[index update destroy]
     before_action :find_club, only: %i[show update destroy]
 
