@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :logged_in_user
+
   attr_reader :user
 
   def new; end
