@@ -1,5 +1,5 @@
 module Api
-  class SessionsController < Devise::SessionsController
+  class SessionsController < Api::BaseController
     skip_before_action :verify_authenticity_token
 
     def create
@@ -8,7 +8,7 @@ module Api
       user = user_email.present? && User.find_by(email: user_email)
 
       if user.present? && user.valid_password?(user_password)
-        sign_in user, store: false
+        log_in user
         user.generate_authentication_token!
         user.save
         user_seri = Serializers::Api::UserSerializer
@@ -23,7 +23,7 @@ module Api
 
     def destroy
       user = User.find_by auth_token: params[:auth_token]
-      sign_out user
+      log_out
       user.generate_authentication_token!
       user.save
       head 204

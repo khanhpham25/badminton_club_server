@@ -1,0 +1,67 @@
+<div class="content-wrapper" style="min-height: 1126px;">
+  <section class="content-header">
+    <h1>Show Club </h1>
+    <ol class="breadcrumb">
+      <li>
+        <%= link_to root_path do %>
+          <i class="fa fa-dashboard"></i> Home</a>
+        <% end %>
+      </li>
+      <li><%= link_to "Clubs", clubs_path %></li>
+      <li class="active"><%= link_to @club.name, @club %></li>
+    </ol>
+  </section>
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
+      <div class="manage-content panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-12 lead">Club Profile<hr></div>
+          </div>
+          <div class="row">
+  		      <div class="col-xs-4 text-center">
+              <img class="img-circle avatar avatar-original" style="-webkit-user-select:none;
+                display:block; margin:auto;" src="http://robohash.org/sitsequiquia.png?size=120x120">
+            </div>
+            <div class="col-xs-8">
+              <div class="row">
+                <div class="col-xs-12">
+                  <h1 class="only-bottom-margin"><%= @club.name %></h1>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <span class="text-muted">Description:</span> <%= @club.description %><br>
+                  <span class="text-muted">Location:</span>
+                  <%= @club.location %>
+                  <span class="text-muted">Average Level:</span>
+                  <%= "Beginner" if @club.average_level == 1%>
+                  <%= "Amateur" if @club.average_level == 2 %>
+                  <%= "Professional" if @club.average_level == 3 %><br>
+                  <span class="text-muted">Number of members:</span>
+                  <%= @club.user_clubs.count %><br>
+                  <span class="text-muted">Recruiting Status:</span>
+                  <%= @club.is_recruiting ? "Yes" : "No" %>
+                  <span class="text-muted">Allow Friendly Match:</span>
+                  <%= @club.allow_friendly_match ? "Yes" : "No" %>
+                  <br><br>
+                  <small class="text-muted">Created: <%= @club.created_at.strftime("%F") %></small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <hr>
+              <%= link_to edit_user_path(@club) do %>
+                <button class="btn btn-default pull-right">
+                  <i class="fa fa-pencil"></i> Edit
+                </button>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

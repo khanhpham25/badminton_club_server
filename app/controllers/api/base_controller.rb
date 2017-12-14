@@ -3,7 +3,6 @@ module Api
     include ActionController::RequestForgeryProtection
     include ApiAuthenticable
 
-    protect_from_forgery with: :exception, prepend: true
-
+    protect_from_forgery with: :null_session
   end
 end
