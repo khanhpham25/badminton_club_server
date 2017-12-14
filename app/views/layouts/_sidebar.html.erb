@@ -6,25 +6,26 @@
         </div>
         <div class="pull-left info">
           <p><%= @current_user.name %></p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
       <ul class="sidebar-menu tree" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
           <ul class="treeview-menu">
-            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+            <li><a href="../../index.html"><i class="fa fa-group"></i> Dashboard v1</a></li>
+            <li><a href="../../index2.html"><i class="fa fa-building-o"></i> Dashboard v2</a></li>
           </ul>
         </li>
-        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>User</span></a></li>
-        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Club</span></a></li>
+        <li>
+          <%= link_to users_path do %>
+            <i class="fa fa-group"></i> <span>Users</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "#" do %>
+            <i class="fa fa-building-o"></i> <span>Clubs</span>
+          <% end %>
+        </li>
       </ul>
     </section>
   </aside>
