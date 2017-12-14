@@ -1,0 +1,71 @@
+<div class="content-wrapper" style="min-height: 1126px;">
+  <section class="content-header">
+    <h1>Clubs </h1>
+    <ol class="breadcrumb">
+      <li>
+        <%= link_to root_path do %>
+          <i class="fa fa-dashboard"></i> Home</a>
+        <% end %>
+      </li>
+      <li class="active"><%= link_to "Clubs", clubs_path %></li>
+    </ol>
+  </section>
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12" >
+        <div class="clearfix">
+          <%= link_to "Create Club", new_club_path, class: "btn btn-primary pull-right" %>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <table id="user-tables" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Location</th>
+                  <th>Average Level</th>
+                  <th>Number of Members</th>
+                  <th>Recruiting</th>
+                  <th>Allow Friendly Match</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Location</th>
+                  <th>Average Level</th>
+                  <th>Number of Members</th>
+                  <th>Recruiting Status</th>
+                  <th>Allow Friendly Match</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                <% @clubs.each do |c| %>
+                  <tr>
+                    <td>
+                      <%= link_to c do
+                        c.name
+                      end %>
+                    </td>
+                    <td><%= c.description%></td>
+                    <td><%= c.location%></td>
+                    <td>
+                      <%= "Beginner" if c.average_level == 1%>
+                      <%= "Amateur" if c.average_level == 2 %>
+                      <%= "Professional" if c.average_level == 3 %>
+                    </td>
+                    <td><%= c.user_clubs.count %></td>
+                    <td><%= c.is_recruiting ? "Yes" : "No" %></td>
+                    <td><%= c.allow_friendly_match ? "Yes" : "No" %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
