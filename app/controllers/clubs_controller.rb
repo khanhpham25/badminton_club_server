@@ -34,6 +34,12 @@ class ClubsController < ApplicationController
     end
   end
 
+  def destroy
+    club.destroy
+    flash[:success] = "Club is succesfully deleted!"
+    redirect_to clubs_url
+  end
+
   private
 
   attr_reader :club

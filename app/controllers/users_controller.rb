@@ -34,6 +34,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    user.destroy
+    flash[:success] = "User is succesfully deleted!"
+    redirect_to users_url
+  end
+
   private
 
   attr_reader :user
