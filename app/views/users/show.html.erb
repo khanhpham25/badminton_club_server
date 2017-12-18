@@ -20,8 +20,9 @@
           </div>
           <div class="row">
   		      <div class="col-xs-4 text-center">
-              <img class="img-circle avatar avatar-original" style="-webkit-user-select:none;
-                display:block; margin:auto;" src="http://robohash.org/sitsequiquia.png?size=120x120">
+              <% avatar = @user.avatar? ? @user.avatar.url : 'http://robohash.org/sitsequiquia.png?size=120x120' %>
+              <%= image_tag avatar, width: 120, height: 120,
+                class: 'img-circle avatar avatar-original ', id: 'img_prev' %>
             </div>
             <div class="col-xs-8">
               <div class="row">
@@ -53,11 +54,17 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12 text-right">
               <hr>
               <%= link_to edit_user_path(@user) do %>
-                <button class="btn btn-default pull-right">
+                <button class="btn btn-default">
                   <i class="fa fa-pencil"></i> Edit
+                </button>
+              <% end %>
+              <%= link_to @user, method: :delete,
+                data: {confirm: "You sure?", disable_with: 'processing...'} do %>
+                <button class="btn btn-danger" >
+                  <i class="fa fa-trash"></i>
                 </button>
               <% end %>
             </div>

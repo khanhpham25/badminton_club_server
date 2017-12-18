@@ -356,3 +356,7 @@
 .manage-content {
   margin-top: 20px;
 }
+
+.dataTables_filter {
+  text-align: right;
+}
