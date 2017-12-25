@@ -4,7 +4,7 @@ module Statistics
       @users = User.all
       oldest_date = User.order(:created_at).first.created_at
       time_interval = ((Time.now - oldest_date)/86400).round
-      total_access = User.all.pluck(:hit_count).inject {|x, s| s += x}
+      total_access = User.all.pluck(:hit_count).inject {|x, s| s += x if x}
       @access_per_day = total_access/time_interval
       beginner = User.where(badminton_level: 1).count
       amateur = User.where(badminton_level: 2).count
