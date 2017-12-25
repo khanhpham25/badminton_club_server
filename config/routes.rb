@@ -26,4 +26,9 @@ Rails.application.routes.draw do
 
   resources :users
   resources :clubs
+
+  namespace :statistics do
+    resources :users, only: :index
+    resources :clubs, only: :index
+  end
 end

@@ -27,6 +27,10 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :auth_token, uniqueness: true
 
+  def increase_hit_count!
+    self.hit_count = (hit_count || 0) + 1
+  end
+
   def generate_authentication_token!
     self.auth_token = Devise.friendly_token
   end

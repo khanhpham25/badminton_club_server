@@ -10,6 +10,7 @@ module Api
       if user.present? && user.valid_password?(user_password)
         log_in user
         user.generate_authentication_token!
+        user.increase_hit_count!
         user.save
         user_seri = Serializers::Api::UserSerializer
           .new(object: user).serializer

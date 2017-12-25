@@ -10,12 +10,6 @@
       </div>
       <ul class="sidebar-menu tree" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview">
-          <ul class="treeview-menu">
-            <li><a href="../../index.html"><i class="fa fa-group"></i> Dashboard v1</a></li>
-            <li><a href="../../index2.html"><i class="fa fa-building-o"></i> Dashboard v2</a></li>
-          </ul>
-        </li>
         <li>
           <%= link_to users_path do %>
             <i class="fa fa-group"></i> <span>Users</span>
@@ -25,6 +19,22 @@
           <%= link_to clubs_path do %>
             <i class="fa fa-building-o"></i> <span>Clubs</span>
           <% end %>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-bar-chart"></i> <span>Statistics</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li>
+                <a href="<%= statistics_users_url %>"><i class="fa fa-group"></i> Users</a>
+              </li>
+              <li>
+                <a href="<%= statistics_clubs_url %>"><i class="fa fa-building-o"></i> Clubs</a>
+              </li>
+            </ul>
+          </li>
         </li>
       </ul>
     </section>
