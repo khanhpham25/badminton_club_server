@@ -21,7 +21,7 @@ module Statistics
       }
 
       @data_set_user_by_month.merge! User.group(
-        User.group("CAST(EXTRACT(Month FROM created_at) AS integer)").count
+        "CAST(EXTRACT(Month FROM created_at) AS integer)"
       ).count
     end
   end
