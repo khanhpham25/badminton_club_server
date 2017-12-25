@@ -1,0 +1,83 @@
+<div class="content-wrapper" style="min-height: 1126px;">
+  <section class="content-header">
+    <h1>Club Statistics </h1>
+    <ol class="breadcrumb">
+      <li>
+        <%= link_to root_path do %>
+          <i class="fa fa-dashboard"></i> Home</a>
+        <% end %>
+      </li>
+      <li><%= link_to "Club Statistics", statistics_clubs_path %></li>
+    </ol>
+  </section>
+
+  <div class="col-lg-6 col-xs-6">
+    <div class="small-box bg-green">
+      <div class="inner">
+        <h3><%= @clubs.count%></h3>
+
+        <p>Number Of Clubs</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-user-plus"></i>
+      </div>
+      <a href="#" class="small-box-footer"></a>
+    </div>
+
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3><%= @friendly_match.count%></h3>
+
+        <p>Club Allow Friendly Match</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-gamepad"></i>
+      </div>
+      <a href="#" class="small-box-footer"></a>
+    </div>
+  </div>
+  <div class="col-lg-6 col-xs-6">
+    <div class="small-box bg-red">
+      <div class="inner">
+        <h3><%= @not_registers.count %></h3>
+
+        <p>Club Not Verified Address</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-map-marker"></i>
+      </div>
+      <a href="#" class="small-box-footer"></a>
+    </div>
+
+    <div class="small-box bg-aqua">
+      <div class="inner">
+        <h3><%= @recruiting.count%></h3>
+
+        <p>Recruiting Clubs</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-graduation-cap"></i>
+      </div>
+      <a href="#" class="small-box-footer"></a>
+    </div>
+  </div>
+
+  <div class='col-xs-12'>
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <i class="fa fa-bar-chart-o"></i>
+
+        <h3 class="box-title">Average Level</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <div class="box-body">
+        <%= pie_chart @data_set_club_level %>
+      </div>
+    </div>
+  </div>
+</div>

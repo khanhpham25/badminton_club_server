@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171126045703) do
+ActiveRecord::Schema.define(version: 20171224212326) do
 
   create_table "clubs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20171126045703) do
     t.string "provider"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.integer "hit_count"
     t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
