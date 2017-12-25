@@ -23,7 +23,7 @@ module Api
     end
 
     def destroy
-      user = User.find_by auth_token: params[:auth_token]
+      user = User.find_by email: params[:email]
       log_out
       user.generate_authentication_token!
       user.save
