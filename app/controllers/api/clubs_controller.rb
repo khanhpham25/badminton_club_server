@@ -5,14 +5,16 @@ module Api
 
     def index
       clubs = Club.sort_by params[:sort], @current_user
+      clubs_seri = Serializers::Api::ClubSerializer.new(object: clubs).serializer
       render json: {
-        messages: "Load clubs successfully!", data: clubs, status: 200
+        messages: "Load clubs successfully!", data: clubs_seri, status: 200
       }, status: :ok
     end
 
     def show
+      club_seri = Serializers::Api::ClubSerializer.new(object: club).serializer
       render json: {
-        messages: "Load club succesfully!", data: club, status: 200
+        messages: "Load club succesfully!", data: club_seri, status: 200
       }, status: :ok
     end
 
