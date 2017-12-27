@@ -9,7 +9,7 @@ module Serializers
       end
 
       def is_owner
-        club.owners.include? object
+        @club.owners.include? object
       end
     end
   end
