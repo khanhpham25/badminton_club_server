@@ -4,7 +4,7 @@ class Api::MembersController < Api::BaseController
   def index
     all_members = club.owners + club.members
     members = Serializers::Api::MemberSerializer.new(
-      object: all_members, scope: {club: club}).new
+      object: all_members, scope: {club: club}).serializer
     render json: {
       messages: "Load Members succesfully", data: members, status: 200
     }, status: :ok
