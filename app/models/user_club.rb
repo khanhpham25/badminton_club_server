@@ -6,5 +6,5 @@ class UserClub < ApplicationRecord
   belongs_to :club
 
   scope :owner_user_clubs, -> { where is_owner: true }
-  scope :member_user_clubs, -> { where is_owner: false }
+  scope :member_user_clubs, -> { where is_owner: [false, nil] }
 end
