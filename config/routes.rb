@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :join_requests, only: %i[index show create]
     resources :user_clubs, except: %i[new edit]
     resources :members, except: %i[new edit]
+    resources :working_schedules, except: %i[new edit]
 
     patch 'join_requests', to: 'join_requests#update'
     delete 'join_requests', to: 'join_requests#destroy'
