@@ -57,8 +57,7 @@ module Api
     attr_reader :working_schedule
 
     def working_schedule_params
-      params.require(:working_schedule).permit
-        WorkingSchedule::ATTRIBUTES_PARAMS
+      params.require(:working_schedule).permit WorkingSchedule::ATTRIBUTES_PARAMS
     end
 
     def find_working_schedule
