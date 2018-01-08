@@ -4,7 +4,7 @@ module Api
     before_action :find_working_schedule, only: %i[show update destroy]
 
     def index
-      working_schedules = WorkingSchedule.all
+      working_schedules = WorkingSchedule.where club_id: params[:club_id]
       render json: {
         messages: "Load Working Schedules",
         data: working_schedules, status: 200
